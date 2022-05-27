@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"regexp"
 
@@ -15,14 +16,19 @@ import (
 func FromSavedCSV(bs []byte) ([]*Place, error) {
 	var in []savedplace
 	if err := csvutil.Unmarshal(bs, &in); err != nil {
-		return nil, err
+		return nil, fmt.Errorf("cant unmarshal csv: [%w]", err)
 	}
 
 	ps := make([]*Place, 0, len(in))
-	for _, sp := range in {
+	for i, sp := range in {
+		if sp == (savedplace{}) {
+			log.Printf("Place number %v is empty", i)
+			continue
+		}
 		id, err := lookupPlaceID(sp)
 		if err != nil {
-			return nil, err
+			log.Printf("Cant lookup place ID for %s, [%s]", sp, err)
+			continue
 		}
 
 		p := &Place{
@@ -75,9 +81,10 @@ func lookupPlaceID(sp savedplace) (string, error) {
 // there is at least one other format https://developers.google.com/places/web-service/place-id#id-overview
 var id = regexp.MustCompile(`\"(ChI[\w-]+)\\`)
 
+// TODO: Allow for CSV files with different header values
 type savedplace struct {
-	Title   string `csv:"Title"`
+	Title   string `csv:"Titel"`
 	Note    string `csv:"Note"`
-	URL     string `csv:"URL"`
-	Comment string `csv:"Comment"`
+	URL     string `csv:"Webadresse"`
+	Comment string `csv:"Kommentar"`
 }
