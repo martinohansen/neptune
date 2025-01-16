@@ -2,11 +2,10 @@ package cmd
 
 import (
 	"context"
-	"io/ioutil"
 	"log"
 	"os"
 
-	"github.com/kasuboski/neptune/pkg/places"
+	"github.com/martinohansen/neptune/pkg/places"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
@@ -28,7 +27,7 @@ var importCmd = &cobra.Command{
 
 		filePath := viper.GetString("file")
 
-		bs, err := ioutil.ReadFile(filePath)
+		bs, err := os.ReadFile(filePath)
 		if err != nil {
 			log.Fatal(err)
 		}

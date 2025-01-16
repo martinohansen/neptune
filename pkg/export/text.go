@@ -6,7 +6,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/kasuboski/neptune/pkg/places"
+	"github.com/martinohansen/neptune/pkg/places"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 )

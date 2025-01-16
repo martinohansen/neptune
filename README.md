@@ -2,7 +2,7 @@
 Manage your places to find where to go.
 
 ## Install
-`go get -u github.com/kasuboski/neptune`
+`go get -u github.com/martinohansen/neptune`
 
 You will need a Google API Key for the Places API in order to look up more info. You can get that [here](https://developers.google.com/places/web-service/get-api-key).
 

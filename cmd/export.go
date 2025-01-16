@@ -6,8 +6,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/kasuboski/neptune/pkg/export"
-	"github.com/kasuboski/neptune/pkg/places"
+	"github.com/martinohansen/neptune/pkg/export"
+	"github.com/martinohansen/neptune/pkg/places"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 	"googlemaps.github.io/maps"

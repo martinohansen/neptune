@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/kasuboski/neptune/cmd"
+	"github.com/martinohansen/neptune/cmd"
 )
 
 func init() {
